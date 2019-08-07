@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             tools:context=".activity.ReceiptActivity">
+
+
+    <ImageView
+            android:id="@+id/iv_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img"
+            android:layout_marginTop="@dimen/dp_40"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="TODO"/>
+
+    <TextView
+            android:id="@+id/text_thanks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:gravity="center"
+            android:text="Thank you!"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:textColor="@color/text_comment"
+            android:textSize="@dimen/sp_26"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_pic"/>
+
+    <TextView
+            android:id="@+id/txt_pay_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_30"
+            android:gravity="center"
+            android:text="Your payemnt has been done!"
+            android:textAllCaps="false"
+
+            android:textColor="@color/txt_light_color"
+            android:textSize="@dimen/sp_24"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_thanks"/>
+
+    <TextView
+            android:id="@+id/text_tid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_30"
+            android:gravity="center"
+            android:text="Txn Id"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:textColor="@color/txt_light_color"
+            android:textSize="@dimen/sp_24"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_pay_detail"/>
+
+    <TextView
+            android:id="@+id/text_id_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="64646466###"
+            android:textAllCaps="false"
+            android:textColor="@color/txt_light_color"
+            android:textSize="@dimen/sp_24"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_tid"/>
+    <TableRow
+            android:id="@+id/row1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_30"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_id_number"
+            app:layout_constraintRight_toRightOf="parent"
+            android:background="@color/btn_color"></TableRow>
+
+
+    <TextView
+            android:id="@+id/text_date_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:gravity="center"
+            android:text="Date"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:textColor="@color/txt_light_color"
+            android:textSize="@dimen/sp_24"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/row1"/>
+
+    <TextView
+            android:id="@+id/text_date_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="17-7-2019"
+            android:textAllCaps="false"
+            android:textColor="@color/txt_light_color"
+            android:textSize="@dimen/sp_24"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_date_text"/>
+
+
+    <TableRow
+            android:id="@+id/row2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_30"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_date_num"
+            app:layout_constraintRight_toRightOf="parent"
+            android:background="@color/btn_color"></TableRow>
+
+    <TextView
+            android:id="@+id/text_amount_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:gravity="center"
+            android:text="Amount"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:textColor="@color/txt_light_color"
+            android:textSize="@dimen/sp_24"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/row2"/>
+
+    <TextView
+            android:id="@+id/text_amount_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="141515"
+            android:textAllCaps="false"
+            android:textColor="@color/txt_light_color"
+            android:textSize="@dimen/sp_24"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_amount_txt"/>
+
+
+</android.support.constraint.ConstraintLayout>

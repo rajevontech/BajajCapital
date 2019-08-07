@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:isScrollContainer="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+
+        android:id="@+id/relative"
+        tools:context=".activity.MainActivity">
+
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_store"
+            android:minHeight="?attr/actionBarSize"
+            android:background="@color/background"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/back_store_add"
+
+                android:src="@mipmap/logo"/>
+    </android.support.v7.widget.Toolbar>
+
+
+    <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
+
+            android:layout_below="@+id/toolbar_store"
+            app:tabBackground="@drawable/tab_selector"
+            app:tabSelectedTextColor="@color/background"
+            android:layout_width="300dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+             app:tabGravity="fill"
+
+            android:background="@color/text_comment"
+            android:layout_marginTop="@dimen/dp_15"
+            tools:ignore="MissingConstraints">
+
+        <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:text="@string/agency_tab"/>
+
+        <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:text="@string/branch_tab"/>
+    </android.support.design.widget.TabLayout>
+
+
+    <FrameLayout
+            android:id="@+id/frame_layout"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_below="@+id/tab_layout">
+    </FrameLayout>
+</RelativeLayout>

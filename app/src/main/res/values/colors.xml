@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <color name="colorPrimary">#3F51B5</color>
+  <color name="colorPrimaryDark">#303F9F</color>
+  <color name="colorAccent">#FF4081</color>
+  <color name="background">#ffffff</color>
+  <color name="background_new">#f1f1f1</color>
+  <color name="background_full">#cfcfcf</color>
+  <color name="btn_color">#0B68B4</color>
+  <color name="txt_edit_color">#161616</color>
+  <color name="txt_light_color">#3D3A3A</color>
+  <color name="dialog_button">#E71111</color>
+
+
+  <color name="txt_color_light">#686565</color>
+  <color name="txt_under_line">#1CB0BC</color>
+  <color name="gray">#C0C0C0</color>
+  <color name="under_line">#38B7C2</color>
+  <color name="text_comment">#0B66B1</color>
+  <color name="border_color">#969191</color>
+  <color name="bt_util_border">#EE5741</color>
+  <color name="more_text">#F05842</color>
+  <color name="light_text">#a69f9f</color>
+</resources>

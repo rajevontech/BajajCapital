@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">BajajCapital</string>
+    <string name="tab1_agency">Agency</string>
+    <string name="tab2_branch">Branch</string>
+    <string name="agent_name">Agent Name</string>
+    <string name="agency_name">Agency name</string>
+    <string name="agent_code">Agent Code</string>
+
+    <string name="amount">Amount</string>
+
+    <string name="debit_card_btn">Pay Via Debit Card</string>
+    <string name="lan">LAN:</string>
+    <string name="customer_name">Customer Name:</string>
+    <string name="payment_type">Payment Type:</string>
+    <string name="full">Full</string>
+    <string name="partial">Partial</string>
+    <string name="transaction_amount">Transaction amount:</string>
+
+    <string name="agency_tab">Agency</string>
+    <string name="branch_tab">Branch</string>
+
+    <string name="hint_lane">Enter LAN (Loan Account Number)</string>
+    <string name="dialog_desc">LANID is not available in database</string>
+    <string name="dialog_title">BajajCapital</string>
+    <string name="dialog_ok">Ok</string>
+    <string name="progress_loading">Loading</string>
+
+
+    <string name="amount_not_exceeds">Amount should not exceeds 200000</string>
+
+    <string name="enter_amount">Entered amount should not exceeds the total balance</string>
+
+
+
+
+    <string name="hint_customerName">Enter Customer Name</string>
+
+    <string name="hint_amount">Enter Amount</string>
+    <string name="hint_agency">Enter Agency name</string>
+
+    <string name="hint_agent">Enter Agent Name</string>
+
+    <string name="hint_agent_code">Enter Agent Code</string>
+    <string name="title_activity_payment_done">PaymentDoneActivity</string>
+
+
+</resources>
