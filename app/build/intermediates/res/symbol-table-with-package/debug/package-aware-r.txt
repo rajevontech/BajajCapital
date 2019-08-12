@@ -1129,6 +1129,7 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
+id agent_code_frame
 id alertTitle
 id all
 id always
@@ -1154,6 +1155,7 @@ id container
 id content
 id contentPanel
 id coordinator
+id cross_agent_code_frame
 id custom
 id customPanel
 id decor_content_parent
@@ -1166,7 +1168,7 @@ id design_navigation_view
 id dimensions
 id direct
 id disableHome
-id edit_agency
+id edit_agency_name
 id edit_agent
 id edit_amount_agency
 id edit_code

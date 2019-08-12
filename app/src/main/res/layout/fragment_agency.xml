@@ -37,20 +37,20 @@
 
 
             <EditText
-                    android:id="@+id/edit_agency"
+                    android:id="@+id/edit_agency_name"
                     android:layout_width="match_parent"
                     android:layout_height="38dp"
                     android:layout_marginLeft="@dimen/dp_40"
                     android:maxLines="1"
                     android:padding="@dimen/dp_10"
                     android:background="@drawable/btn_custom_edit"
-                    android:singleLine="true"
+                    android:inputType="textCapWords|textNoSuggestions|textPersonName"
 
-                    android:inputType="text"
+
+                    android:singleLine="true"
                     android:paddingLeft="@dimen/dp_5"
                     android:layout_marginRight="@dimen/dp_40"
                     android:hint="@string/agency_name"
-                    android:textAllCaps="false"
                     android:textColor="@color/txt_edit_color"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -69,30 +69,29 @@
                 android:textSize="@dimen/sp_18"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edit_agency"/>
+                app:layout_constraintTop_toBottomOf="@+id/edit_agency_name"/>
             <EditText
                     android:id="@+id/edit_agent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/dp_10"
                     android:singleLine="true"
-
                     android:layout_marginLeft="@dimen/dp_40"
                     android:layout_marginRight="@dimen/dp_40"
                     android:paddingLeft="@dimen/dp_5"
+                    android:inputType="textCapWords|textNoSuggestions|textPersonName"
                     android:maxLines="1"
                     android:layout_marginBottom="@dimen/dp_10"
                     android:background="@drawable/btn_custom_edit"
-                    android:inputType="text"
                     android:scrollHorizontally="true"
                     android:hint="@string/hint_agent"
-                    android:textAllCaps="false"
                     android:textColor="@color/txt_edit_color"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text_agent_name"/>
 
+      //
 
             <TextView
                     android:id="@+id/text_agent_code"
@@ -108,6 +107,14 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edit_agent"/>
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+
+                android:id="@+id/agent_code_frame"
+                app:layout_constraintTop_toBottomOf="@+id/text_agent_code"
+                android:layout_centerVertical="true" >
             <EditText
                     android:id="@+id/edit_code"
                     android:layout_width="match_parent"
@@ -115,13 +122,14 @@
                     android:padding="@dimen/dp_10"
                     android:layout_marginLeft="@dimen/dp_40"
                     android:layout_marginRight="@dimen/dp_40"
+                    android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     android:paddingLeft="@dimen/dp_5"
                     android:singleLine="true"
-
+                    android:inputType="textCapCharacters|textNoSuggestions"
+                    android:maxLength="10"
                     android:maxLines="1"
                     android:layout_marginBottom="@dimen/dp_10"
                     android:background="@drawable/btn_custom_edit"
-                    android:digits="0123456789abcdefghijklmnopqrstuvwxyz"
                     android:scrollHorizontally="true"
                     android:hint="@string/hint_agent_code"
                     android:textAllCaps="false"
@@ -131,6 +139,21 @@
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text_agent_code"/>
 
+
+
+            <Button
+                    android:id="@+id/cross_agent_code_frame"
+                    android:layout_width="35dp"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_gravity="right"
+                    android:visibility="gone"
+
+                    android:layout_marginRight="@dimen/dp_45"
+                    android:drawableRight="@mipmap/cross"
+                    android:text=" "
+                    android:background="?android:attr/selectableItemBackground"
+            />
+        </FrameLayout>
 
             <TextView
                     android:id="@+id/text_amount"
@@ -145,7 +168,7 @@
                     android:textSize="@dimen/sp_18"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edit_code"/>
+                    app:layout_constraintTop_toBottomOf="@+id/agent_code_frame"/>
             <EditText
                     android:id="@+id/edit_amount_agency"
                     android:layout_width="match_parent"
@@ -156,13 +179,13 @@
                     android:paddingLeft="@dimen/dp_5"
                     android:hint="@string/hint_amount"
                     android:singleLine="true"
+                    android:inputType="numberDecimal"
+                    android:maxLength="10"
 
                     android:maxLines="1"
                     android:layout_marginBottom="@dimen/dp_10"
                     android:background="@drawable/btn_custom_edit"
-                    android:maxLength="6"
                     android:digits="0123456789"
-                    android:inputType="numberDecimal"
                     android:scrollHorizontally="true"
                     android:textAllCaps="false"
                     android:textColor="@color/txt_edit_color"

@@ -60,10 +60,10 @@ class BranchFragment : Fragment() {
 
         initWindow()
         initView(view)
-        // getToken()
 
         return view
     }
+
     // Main View function
     private fun initWindow() {
         AppUtilities.hideKeyboard(requireActivity())
@@ -74,7 +74,7 @@ class BranchFragment : Fragment() {
         )
     }
 
-     //Branch view
+    //Branch view
     @RequiresApi(Build.VERSION_CODES.O)
     private fun initView(view: View?) {
         debitCardBtn = view?.findViewById(R.id.pay_debit_card_branch) as Button
@@ -89,6 +89,8 @@ class BranchFragment : Fragment() {
         crossBtn!!.setOnClickListener {
             edit_lan_num.setText("")
             AppUtilities.hideKeyboard(requireActivity())
+            edit_customer_name.setText("")
+            editTransaction?.setText("")
 
         }
 
@@ -98,7 +100,7 @@ class BranchFragment : Fragment() {
             inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
         }
 
-         //Click Button Debit card
+        //Click Button Debit card
         RxView.clicks(debitCardBtn!!)
             .subscribe {
                 /* do something */
@@ -121,7 +123,6 @@ class BranchFragment : Fragment() {
 
 
         }
-
         override fun afterTextChanged(s: Editable) {
             try {
                 val strEnteredVal = s.toString()
@@ -131,8 +132,6 @@ class BranchFragment : Fragment() {
                     if (amount == "null" || amount.isEmpty()) {
                         amount = "0"
                     }
-
-
                     val amountDouble = amount.toDouble()
 
                     System.out.println(amountDouble)
@@ -161,7 +160,6 @@ class BranchFragment : Fragment() {
             }
         }
 
-
     }
 
 
@@ -174,7 +172,6 @@ class BranchFragment : Fragment() {
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
 
             // edit_customer_name.setText(customerName)
-
         }
 
         override fun afterTextChanged(s: Editable) {
@@ -199,7 +196,6 @@ class BranchFragment : Fragment() {
 
             if (str.isNotEmpty()) {
                 crossBtn!!.setVisibility(View.VISIBLE);
-
             } else {
                 crossBtn!!.setVisibility(View.GONE);
 
@@ -281,7 +277,7 @@ class BranchFragment : Fragment() {
                         //AlertDialog
                         val dialogBuilder = AlertDialog.Builder(requireActivity())
                         // set message of alert dialog
-                        dialogBuilder.setMessage(getString(R.string.dialog_desc))
+                        dialogBuilder.setMessage(dataGet?.errorDescription)
                             // if the dialog is cancelable
                             .setCancelable(false)
                             .setNegativeButton(R.string.dialog_ok, DialogInterface.OnClickListener { dialog, id ->

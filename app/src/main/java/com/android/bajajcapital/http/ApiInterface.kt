@@ -9,10 +9,12 @@ import retrofit2.http.*
 
 interface ApiInterface {
 
+    //Customer Validate
     @POST("CustomerValidation/LanId")
     fun validateCustomer(@HeaderMap headers: Map<String, String>, @Body request: RequestBody): Call<ValidateCustomer>
 
 
+    //Token get
     @Headers(
         "Content-Type:application/x-www-form-urlencoded"
     )
@@ -26,17 +28,14 @@ interface ApiInterface {
     ): Call<TokenResponse>
 
 
-
+    //  Agent API
     @POST("AgentPaymentUpdate")
-    fun agentValidate(
-        @Field("amount")amount: String,
-        @Field("branch_code")branch_code:String,
-        @Field("transaction_ref_no")transaction_ref_no:String,
-        @Field("received_date")received_date:String,
-        @Field("source")source:String,
-        @Field("customername")customername:String):Call<AgentResponse>
+    fun validateAgent(@HeaderMap headers: Map<String, String>, @Body request: RequestBody): Call<ValidateCustomer>
 
 
+    //Agency API (agency code input)
+    @POST("AgencyNameCdm")
+    fun getAgencyCode(@HeaderMap headers: Map<String, String>, @Body request: RequestBody): Call<AgentResponse>
 
 
 }

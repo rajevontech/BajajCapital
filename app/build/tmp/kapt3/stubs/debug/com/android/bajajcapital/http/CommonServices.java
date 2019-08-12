@@ -2,10 +2,17 @@ package com.android.bajajcapital.http;
 
 import java.lang.System;
 
-@kotlin.Metadata(mv = {1, 1, 13}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000,\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0010\u000e\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\u0018\u0000 \f2\u00020\u0001:\u0001\fB\u0005\u00a2\u0006\u0002\u0010\u0002J:\u0010\u0003\u001a\n\u0012\u0004\u0012\u00020\u0005\u0018\u00010\u00042\"\u0010\u0006\u001a\u001e\u0012\u0004\u0012\u00020\b\u0012\u0004\u0012\u00020\b0\u0007j\u000e\u0012\u0004\u0012\u00020\b\u0012\u0004\u0012\u00020\b`\t2\u0006\u0010\n\u001a\u00020\u000b\u00a8\u0006\r"}, d2 = {"Lcom/android/bajajcapital/http/CommonServices;", "", "()V", "getAppUser", "Landroid/arch/lifecycle/MutableLiveData;", "Lcom/android/bajajcapital/bean/ValidateCustomer;", "header", "Ljava/util/HashMap;", "", "Lkotlin/collections/HashMap;", "request", "Lokhttp3/RequestBody;", "Factory", "app_debug"})
+@kotlin.Metadata(mv = {1, 1, 13}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000,\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0010\u000e\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0003\u0018\u0000 \r2\u00020\u0001:\u0001\rB\u0005\u00a2\u0006\u0002\u0010\u0002J8\u0010\u0003\u001a\b\u0012\u0004\u0012\u00020\u00050\u00042\"\u0010\u0006\u001a\u001e\u0012\u0004\u0012\u00020\b\u0012\u0004\u0012\u00020\b0\u0007j\u000e\u0012\u0004\u0012\u00020\b\u0012\u0004\u0012\u00020\b`\t2\u0006\u0010\n\u001a\u00020\u000bJ:\u0010\f\u001a\n\u0012\u0004\u0012\u00020\u0005\u0018\u00010\u00042\"\u0010\u0006\u001a\u001e\u0012\u0004\u0012\u00020\b\u0012\u0004\u0012\u00020\b0\u0007j\u000e\u0012\u0004\u0012\u00020\b\u0012\u0004\u0012\u00020\b`\t2\u0006\u0010\n\u001a\u00020\u000b\u00a8\u0006\u000e"}, d2 = {"Lcom/android/bajajcapital/http/CommonServices;", "", "()V", "getAgentDetails", "Landroid/arch/lifecycle/MutableLiveData;", "Lcom/android/bajajcapital/bean/ValidateCustomer;", "header", "Ljava/util/HashMap;", "", "Lkotlin/collections/HashMap;", "request", "Lokhttp3/RequestBody;", "getAppUser", "Factory", "app_debug"})
 public final class CommonServices {
     private static com.google.gson.Gson gson;
     public static final com.android.bajajcapital.http.CommonServices.Factory Factory = null;
+    
+    @org.jetbrains.annotations.NotNull()
+    public final android.arch.lifecycle.MutableLiveData<com.android.bajajcapital.bean.ValidateCustomer> getAgentDetails(@org.jetbrains.annotations.NotNull()
+    java.util.HashMap<java.lang.String, java.lang.String> header, @org.jetbrains.annotations.NotNull()
+    okhttp3.RequestBody request) {
+        return null;
+    }
     
     @org.jetbrains.annotations.Nullable()
     public final android.arch.lifecycle.MutableLiveData<com.android.bajajcapital.bean.ValidateCustomer> getAppUser(@org.jetbrains.annotations.NotNull()

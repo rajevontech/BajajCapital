@@ -6,6 +6,7 @@ object AppConstant {
     // API URL
     const val BASE_URL = "https://bfl-api-dev.azure-api.net/PaymentServiceV1WrapperWS/"
     const val URL_TOKEN = "https://login.microsoftonline.com/bajajfinance.in/oauth2/"
+    const val URL_AGENCY_CODE = "https://bfl-api-dev.azure-api.net/DealerLoginWS/"
 
 
     // CLIENT CREDENTIALS
@@ -27,10 +28,11 @@ object AppConstant {
     const val CONNECTION_ERROR = "Connection Error"
     const val SUCCESS = "SUCCESS"
 
+
     // API TAGS
 
     const val LAN_ID = "4020CD33583615"  //working
-//  const val LAN_ID="4050CD31245722"  //not working
+    //  const val LAN_ID="4050CD31245722"  //not working
     const val APPL_ID_NAME = "appl_id"
     const val OCP_APIM_KEY_NAME = "Ocp-Apim-Subscription-Key"
     const val CONTENT_TYPE_NAME = "Content-Type"
@@ -39,8 +41,9 @@ object AppConstant {
     const val OCP_APIM_KEY_VALUE = "82768aa2d52943f6a5183863f1778354"
     const val CONTENT_TYPE_VALUE = "application/json"
     const val ENCRYPTED_REQUEST = "encrptedRequest"
-    const val SECRET_KEY = "ynvR7iKThNmkGp3g"
 
+    const val AGENCY_CODE = "agencyCode"
+    const val SECRET_KEY = "ynvR7iKThNmkGp3g"
 
 
 }

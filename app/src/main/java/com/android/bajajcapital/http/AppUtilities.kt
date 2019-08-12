@@ -75,7 +75,8 @@ object AppUtilities {
         val currentFocusedView = activity.currentFocus
         currentFocusedView?.let {
             inputMethodManager.hideSoftInputFromWindow(
-                currentFocusedView.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+                currentFocusedView.windowToken, InputMethodManager.HIDE_NOT_ALWAYS
+            )
         }
     }
 
@@ -114,5 +115,6 @@ object AppUtilities {
         val newKey = SecretKeySpec(AppConstant.SECRET_KEY.toByteArray(Charsets.UTF_8), AppConstant.AES)
         val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
         cipher.init(Cipher.DECRYPT_MODE, newKey, ivSpec)
-        return String(cipher.doFinal(textBytes), Charsets.UTF_8)   }
+        return String(cipher.doFinal(textBytes), Charsets.UTF_8)
+    }
 }

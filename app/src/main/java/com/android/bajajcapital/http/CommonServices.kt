@@ -2,6 +2,7 @@ package com.android.bajajcapital.http
 
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
+import com.android.bajajcapital.bean.AgentResponse
 import com.android.bajajcapital.bean.ValidateCustomer
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -25,14 +26,43 @@ class CommonServices {
             val retrofit = Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
-
                 .baseUrl(AppConstant.BASE_URL)
-                //.baseUrl("https://learn2crack-json.herokuapp.com/api/")
-
                 .build()
             return retrofit.create(ApiInterface::class.java)
         }
     }
+
+
+    fun getAgentDetails(header: HashMap<String, String>, request: RequestBody): MutableLiveData<ValidateCustomer> {
+        val liveAgentResponse: MutableLiveData<ValidateCustomer> = MutableLiveData()
+        val retrofitCall = CommonServices.create().validateAgent(header, request)
+        retrofitCall.enqueue(object : Callback<ValidateCustomer> {
+            override fun onFailure(call: Call<ValidateCustomer>, t: Throwable) {
+                Log.e("on Failure Token agent:", "retrofit error-agent response")
+            }
+
+            override fun onResponse(call: Call<ValidateCustomer>, response: Response<ValidateCustomer>) {
+                val value = response.body()
+                if (value != null) {
+                    liveAgentResponse?.value = value
+                } else {
+                    try {
+                        val gson = Gson()
+                        val type = object : TypeToken<ValidateCustomer>() {}.type
+                        var errorResponse: ValidateCustomer? = gson.fromJson(response.errorBody()!!.charStream(), type)
+                        Log.e("On Response Validate", errorResponse.toString())
+                        liveAgentResponse?.value = errorResponse
+                    } catch (e: Exception) {
+                    }
+
+
+                }
+            }
+        })
+
+        return liveAgentResponse
+    }
+
 
     fun getAppUser(header: HashMap<String, String>, request: RequestBody): MutableLiveData<ValidateCustomer>? {
         val liveAppUserResponse: MutableLiveData<ValidateCustomer> = MutableLiveData()
@@ -58,7 +88,6 @@ class CommonServices {
                         liveAppUserResponse?.value = errorResponse
                     } catch (e: Exception) {
                     }
-
 
                 }
             }

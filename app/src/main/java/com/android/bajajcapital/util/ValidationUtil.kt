@@ -12,8 +12,6 @@ import android.widget.EditText
 
  class ValidationUtil (private val context: Context) {
 
-
-
     fun isEmptyField(textInputEditText: EditText, message: String): Boolean {
         val value = textInputEditText.text.toString().trim()
         if (value.isEmpty()) {
@@ -88,4 +86,5 @@ import android.widget.EditText
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
     }
+
 }

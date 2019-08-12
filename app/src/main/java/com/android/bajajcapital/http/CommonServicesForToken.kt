@@ -21,8 +21,6 @@ class CommonServicesForToken {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .baseUrl(AppConstant.URL_TOKEN)
-                //.baseUrl("https://learn2crack-json.herokuapp.com/api/")
-
                 .build()
 
             return retrofit.create(ApiInterface::class.java)
