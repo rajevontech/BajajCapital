@@ -1169,7 +1169,7 @@ id dimensions
 id direct
 id disableHome
 id edit_agency_name
-id edit_agent
+id edit_agent_name
 id edit_amount_agency
 id edit_code
 id edit_customer_name
@@ -1485,8 +1485,11 @@ string dialog_desc
 string dialog_ok
 string dialog_title
 string enter_amount
+string enter_customer_limit
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string fetching_agency
+string fetching_customer
 string full
 string hide_bottom_view_on_scroll_behavior
 string hint_agency
@@ -1496,6 +1499,7 @@ string hint_amount
 string hint_customerName
 string hint_lane
 string lan
+string loading
 string mtrl_chip_close_icon_content_description
 string partial
 string password_toggle_content_description

@@ -14,7 +14,6 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Build
 import android.support.annotation.RequiresApi
@@ -29,13 +28,10 @@ import com.jakewharton.rxbinding.view.RxView
 import kotlinx.android.synthetic.main.fragment_agency.*
 import android.util.Log
 import android.widget.EditText
-import android.widget.Toast
 import com.android.bajajcapital.R
 import com.android.bajajcapital.bean.AgentResponse
 import com.android.bajajcapital.bean.TokenResponse
-
 import com.android.bajajcapital.viewModel.CommonViewModel
-
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import org.jetbrains.anko.toast
@@ -83,7 +79,6 @@ class AgencyFragment : Fragment() {
         validationUtil = ValidationUtil(requireActivity())
         editAgentCode = view?.findViewById(R.id.edit_code) as EditText
         editAgentCode?.addTextChangedListener(mTextEditorWatcherAgencyCode)
-
         crossBtnAgentCode = view?.findViewById(R.id.cross_agent_code_frame) as Button
 
         crossBtnAgentCode!!.setOnClickListener {
@@ -91,6 +86,7 @@ class AgencyFragment : Fragment() {
             AppUtilities.hideKeyboard(requireActivity())
             edit_amount_agency.setText("")
             edit_code.setText("")
+            edit_agent_name.setText("")
         }
 
 
@@ -111,7 +107,6 @@ class AgencyFragment : Fragment() {
                 }
 
             }
-
 
     }
 
@@ -154,7 +149,7 @@ class AgencyFragment : Fragment() {
     }
 
 
-    private fun getAgentCodeDetails() {
+    private fun getAgencyCodeDetails() {
         val encryptedJason = JSONObject()
         // encryptedJason.put(AppConstant.AGENCY_CODE, "BFLOW4X005")
         encryptedJason.put(AppConstant.AGENCY_CODE, editAgentCode!!.editableText.toString().trim())
@@ -168,21 +163,19 @@ class AgencyFragment : Fragment() {
 
         Log.e("encryptedJason--", encryptedJason.toString())
 
-
         val mAgencyViewModel = ViewModelProviders.of(requireActivity()).get(CommonViewModel::class.java)
         val requestBody: RequestBody =
             RequestBody.create(MediaType.parse("application/json"), encryptedJason.toString())
         val appAgentValidateDetails = mAgencyViewModel.getAgencyCodeDetails(headers, requestBody)
         appAgentValidateDetails?.observe(this, Observer<AgentResponse> { response ->
 
-            AppUtilities.dismissProgress(requireActivity(), "Loading", false)
-
-
+            AppUtilities.dismissProgress(requireActivity(),  getString(R.string.loading), false)
             if (response != null) {
                 if (response?.errorDescription == AppConstant.SUCCESS) {
                     AppUtilities.hideKeyboard(requireActivity())
                     edit_agency_name.setText(response!!.agencyName)
                     edit_amount_agency.setText(response!!.amount)
+                    edit_agent_name.setText(response!!.agencyName)
 
                 } else {
                     AppUtilities.hideKeyboard(requireActivity())
@@ -192,9 +185,9 @@ class AgencyFragment : Fragment() {
                     dialogBuilder.setMessage(response.errorDescription)
                         // if the dialog is cancelable
                         .setCancelable(false)
-                        .setNegativeButton(R.string.dialog_ok, DialogInterface.OnClickListener { dialog, id ->
+                        .setNegativeButton(R.string.dialog_ok){dialog,id ->
                             dialog.dismiss()
-                        })
+                        }
 
                     // create dialog box
                     val alert = dialogBuilder.create()
@@ -214,10 +207,9 @@ class AgencyFragment : Fragment() {
 
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun getToken() {
+    private fun getToken()  {
 
-        AppUtilities.showProgress(requireActivity(), "Fetching customer details..", false)
-
+        AppUtilities.showProgress(requireActivity(), getString(R.string.fetching_agency), false)
         val mTokenViewModel = ViewModelProviders.of(requireActivity()).get(CommonViewModel::class.java)
         val appTokenDetails = mTokenViewModel.getTokenData(
             AppConstant.GRANT_TYPE,
@@ -232,21 +224,20 @@ class AgencyFragment : Fragment() {
             if (response != null) {
                 Log.e("response", response.access_token)
                 accessToken = response.access_token
-                    getAgentCodeDetails()
+                getAgencyCodeDetails()
             } else {
-                AppUtilities.dismissProgress(requireActivity(), "Loading", false)
+                AppUtilities.dismissProgress(requireActivity(), getString(R.string.loading), false)
             }
         })
     }
 
-
     //Validation
     private fun validation() {
         when {
-            !validationUtil.isEmptyField(edit_agency_name!!, getString((R.string.hint_agency))) -> return
-            !validationUtil.isEmptyField(edit_agent!!, getString((R.string.hint_agent))) -> return
-            !validationUtil.isEmptyField(edit_code!!, getString((R.string.hint_agent_code))) -> return
-            !validationUtil.isEmptyField(edit_amount_agency!!, getString((R.string.hint_amount))) -> return
+            !validationUtil.isEmptyField(edit_agency_name!!, getString(R.string.hint_agency)) -> return
+            !validationUtil.isEmptyField(edit_agent_name!!, getString(R.string.hint_agent)) -> return
+            !validationUtil.isEmptyField(edit_code!!, getString(R.string.hint_agent_code)) -> return
+            !validationUtil.isEmptyField(edit_amount_agency!!, getString(R.string.hint_amount)) -> return
         }
         val i = Intent(activity, ReceiptActivity::class.java)
         startActivity(i)

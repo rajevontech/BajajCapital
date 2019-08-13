@@ -23,5 +23,4 @@ class ReceiptActivity : AppCompatActivity() {
     }
 
 
-
 }

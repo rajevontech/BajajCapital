@@ -29,9 +29,13 @@
     <string name="amount_not_exceeds">Amount should not exceeds 200000</string>
 
     <string name="enter_amount">Entered amount should not exceeds the total balance</string>
+    <string name="enter_customer_limit">Entered amount should not exceeds the customer limit</string>
+
+    <string name="fetching_customer">Fetching customer details..</string>
+    <string name="loading">Loading</string>
 
 
-
+    <string name="fetching_agency">Fetching agency details..</string>
 
     <string name="hint_customerName">Enter Customer Name</string>
 

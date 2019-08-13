@@ -44,30 +44,28 @@ class BranchFragment : Fragment() {
     private lateinit var validationUtil: ValidationUtil
     private var debitCardBtn: Button? = null
     private var crossBtn: Button? = null
-
     private var editLan: EditText? = null
     private var editTransaction: EditText? = null
     private var mainViewBranch: ConstraintLayout? = null
     private var accessToken = ""
     private var customerName = ""
     private var amount = "0"
+    private var customerLimit = "0"
     private var apiCheck = false
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view: View? = inflater!!.inflate(R.layout.fragment_branch, container, false)
         validationUtil = ValidationUtil(requireActivity())
-
         initWindow()
         initView(view)
-
         return view
     }
 
     // Main View function
     private fun initWindow() {
         AppUtilities.hideKeyboard(requireActivity())
-
         activity!!.window.setSoftInputMode(
             WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or
                     WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
@@ -82,10 +80,8 @@ class BranchFragment : Fragment() {
         editLan = view?.findViewById(R.id.edit_lan_num) as EditText
         editTransaction = view?.findViewById(R.id.edit_transaction_branch) as EditText
         editLan?.addTextChangedListener(mTextEditorWatcherLAN)
-
         editTransaction?.addTextChangedListener(mTextEditorWatcherTransaction)
         crossBtn = view?.findViewById(R.id.button_cross_frame) as Button
-
         crossBtn!!.setOnClickListener {
             edit_lan_num.setText("")
             AppUtilities.hideKeyboard(requireActivity())
@@ -100,7 +96,7 @@ class BranchFragment : Fragment() {
             inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
         }
 
-        //Click Button Debit card
+        //Click Button Debit card pay
         RxView.clicks(debitCardBtn!!)
             .subscribe {
                 /* do something */
@@ -123,6 +119,7 @@ class BranchFragment : Fragment() {
 
 
         }
+
         override fun afterTextChanged(s: Editable) {
             try {
                 val strEnteredVal = s.toString()
@@ -131,38 +128,39 @@ class BranchFragment : Fragment() {
                     Log.e("Amount++---", amount)
                     if (amount == "null" || amount.isEmpty()) {
                         amount = "0"
+                    } else if (customerLimit == "null" || customerLimit.isEmpty()) {
+                        customerLimit = "0"
                     }
                     val amountDouble = amount.toDouble()
+                    val customerLimitDouble = customerLimit.toDouble()
+
 
                     System.out.println(amountDouble)
 
                     Log.e("Amount***---", amountDouble.toString())
-
-
                     var inputNum = strEnteredVal.toDouble()
                     Log.e("num***---", inputNum.toString())
                     if (inputNum > 200000) {
                         editTransaction!!.error = getString(R.string.amount_not_exceeds)
                         editTransaction!!.requestFocus()
-                    } else if (amountDouble >= 200000) {
-                        editTransaction!!.error = getString(R.string.amount_not_exceeds)
-                        editTransaction!!.requestFocus()
                     } else if (amountDouble > 0 && inputNum > amountDouble) {
-                        editTransaction!!.error = getString(R.string.enter_amount)
+                        editTransaction!!.error = getString(R.string.enter_amount) + "(" + amountDouble + ")"
+                        editTransaction!!.requestFocus()
+                    } else if (customerLimitDouble > 0 && inputNum > customerLimitDouble) {
+                        editTransaction!!.error = getString(R.string.enter_customer_limit) + "(" + customerLimitDouble +
+                                ")"
                         editTransaction!!.requestFocus()
                     } else {
                         editTransaction!!.error = null
                     }
 
-
                 }
             } catch (e: Exception) {
+
             }
         }
 
     }
-
-
     private val mTextEditorWatcherLAN = object : TextWatcher {
 
         override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
@@ -170,10 +168,10 @@ class BranchFragment : Fragment() {
         }
 
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-
             // edit_customer_name.setText(customerName)
         }
 
+        @RequiresApi(Build.VERSION_CODES.O)
         override fun afterTextChanged(s: Editable) {
             val str = s.toString()
 
@@ -190,7 +188,6 @@ class BranchFragment : Fragment() {
 
             } else {
                 //  Toast.makeText(context, " Match.", Toast.LENGTH_SHORT).show()
-
 
             }
 
@@ -248,7 +245,7 @@ class BranchFragment : Fragment() {
         val appValidateDetails = mSignViewModel.getValidate(headers, requestBody)
 
         appValidateDetails?.observe(this, Observer<ValidateCustomer> { response ->
-            AppUtilities.dismissProgress(requireActivity(), "Loading", false)
+            AppUtilities.dismissProgress(requireActivity(), getString(R.string.loading), false)
             if (response != null) {
                 Log.e("Validate---", response!!.encryptedResponse)
 
@@ -264,14 +261,18 @@ class BranchFragment : Fragment() {
 
                     customerName = dataGet?.cust_name.toString()
                     amount = dataGet?.tot_over.toString()
-
                     amount = dataGet?.tot_over.toString()
+                    customerLimit = dataGet?.customerLimit.toString()
+
                     Log.e("Amount----", amount)
-
-
                     Log.e("On Response $$++%", dataGet.toString())
-
-                    if (!(dataGet?.status == AppConstant.SUCCESS)) {
+                    if (dataGet?.status == AppConstant.SUCCESS) {
+                        AppUtilities.hideKeyboard(requireActivity())
+                        Log.e("CustomerName%", customerName)
+                        Log.e("Customer Limit%", customerLimit)
+                        edit_customer_name.setText(customerName)
+                        edit_transaction_branch.setText(amount)
+                    } else {
                         AppUtilities.hideKeyboard(requireActivity())
 
                         //AlertDialog
@@ -280,10 +281,9 @@ class BranchFragment : Fragment() {
                         dialogBuilder.setMessage(dataGet?.errorDescription)
                             // if the dialog is cancelable
                             .setCancelable(false)
-                            .setNegativeButton(R.string.dialog_ok, DialogInterface.OnClickListener { dialog, id ->
+                            .setNegativeButton(R.string.dialog_ok) { dialog, id ->
                                 dialog.dismiss()
-                            })
-
+                            }
                         // create dialog box
                         val alert = dialogBuilder.create()
                         // set title for alert dialog box
@@ -292,25 +292,10 @@ class BranchFragment : Fragment() {
 
                         // show alert dialog
                         alert.show()
-
                         edit_customer_name.setText("")
                         edit_transaction_branch.setText("")
 
-
-                    } else {
-
-                        AppUtilities.hideKeyboard(requireActivity())
-
-
-                        Log.e("CustomerName%", customerName)
-                        Log.e("Amount%", amount)
-
-                        edit_customer_name.setText(customerName)
-                        edit_transaction_branch.setText(amount)
-
-
                     }
-
                 }
             }
 
@@ -320,9 +305,7 @@ class BranchFragment : Fragment() {
     //Token API
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getToken() {
-        AppUtilities.showProgress(requireActivity(), "Fetching customer details..", false)
-
-
+        AppUtilities.showProgress(requireActivity(), getString(R.string.fetching_customer), false)
         val mTokenViewModel = ViewModelProviders.of(requireActivity()).get(CommonViewModel::class.java)
         val appTokenDetails = mTokenViewModel.getTokenData(
             AppConstant.GRANT_TYPE,
@@ -340,7 +323,7 @@ class BranchFragment : Fragment() {
                 accessToken = response.access_token
                 doValidateCustomer()
             } else {
-                AppUtilities.dismissProgress(requireActivity(), "Loading", false)
+                AppUtilities.dismissProgress(requireActivity(), getString(R.string.loading), false)
             }
         })
     }
